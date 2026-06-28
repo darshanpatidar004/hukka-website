@@ -1,13 +1,11 @@
 import React from 'react';
 import { dbQuery } from '@/lib/db';
-import BestSellers from '@/components/BestSellers';
 import FeaturedCollections from '@/components/FeaturedCollections';
 import ProductShowcase from '@/components/ProductShowcase';
-import WhyChooseUs from '@/components/WhyChooseUs';
 import ReviewsSection from '@/components/ReviewsSection';
 import InstagramGallery from '@/components/InstagramGallery';
 import HeroSection from '@/components/HeroSection';
-import BrandStorySection from '@/components/BrandStorySection';
+
 
 export const revalidate = 3600; // Cache page for an hour, ISR-ready
 
@@ -34,34 +32,20 @@ export default async function Home() {
       <FeaturedCollections />
 
       {/* ========================================================================= */}
-      {/* 3. BEST SELLERS CAROUSEL SECTION */}
-      {/* ========================================================================= */}
-      <BestSellers products={products} />
-
-      {/* ========================================================================= */}
-      {/* 4. BRAND STORY SECTION */}
-      {/* ========================================================================= */}
-      <BrandStorySection />
-
-      {/* ========================================================================= */}
-      {/* 5. INTERACTIVE PRODUCT SHOWCASE SECTION */}
+      {/* 3. INTERACTIVE PRODUCT SHOWCASE SECTION */}
       {/* ========================================================================= */}
       <ProductShowcase product={flagshipProduct} />
 
       {/* ========================================================================= */}
-      {/* 6. WHY CHOOSE US SECTION */}
-      {/* ========================================================================= */}
-      <WhyChooseUs />
-
-      {/* ========================================================================= */}
-      {/* 7. CUSTOMER REVIEWS SECTION */}
+      {/* 4. CUSTOMER REVIEWS SECTION */}
       {/* ========================================================================= */}
       <ReviewsSection />
 
       {/* ========================================================================= */}
-      {/* 8. INSTAGRAM GALLERY SECTION */}
+      {/* 5. INSTAGRAM GALLERY SECTION */}
       {/* ========================================================================= */}
       <InstagramGallery />
+
     </div>
   );
 }

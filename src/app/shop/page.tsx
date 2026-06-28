@@ -2,7 +2,8 @@ import React, { Suspense } from 'react';
 import { dbQuery } from '@/lib/db';
 import ShopClient from './ShopClient';
 
-export const revalidate = 0; // Dynamic data loading
+export const dynamic = 'force-static';
+
 
 export default async function ShopPage() {
   const products = dbQuery.getProducts();

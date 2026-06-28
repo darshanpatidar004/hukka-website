@@ -41,8 +41,8 @@ export default function WhyChooseUs() {
   return (
     <section id="why-us" className="py-24 bg-zinc-950 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative">
       {/* Glow backgrounds */}
-      <div className="absolute top-10 right-10 w-96 h-96 bg-gold-600/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-600/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-10 right-10 w-96 h-96 bg-gold-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-600/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="text-center max-w-xl mx-auto mb-16">
         <span className="text-xs uppercase tracking-[0.4em] text-gold-500 font-semibold block mb-3">
@@ -77,6 +77,171 @@ export default function WhyChooseUs() {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* ========================================================================= */}
+      {/* PERFORMANCE LABS & GRAPHS SECTION */}
+      {/* ========================================================================= */}
+      <div className="mt-28 border-t border-zinc-900 pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column: Scientific Narrative */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <span className="text-xs uppercase tracking-[0.4em] text-gold-500 font-semibold">
+              Aerospace Engineering Labs
+            </span>
+            <h3 className="font-serif text-2xl md:text-4xl text-zinc-100 uppercase tracking-wide">
+              Scientific Precision, <br />
+              <span className="text-gold-200">Sensory Mastery</span>
+            </h3>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              We do not rely on guesses. In our Dubai labs, we analyze thermal dynamics, fluid airflow drag, and molecular rust-resistance to engineer hookahs that operate as high-performance art pieces. 
+            </p>
+            <p className="text-zinc-500 text-xs leading-relaxed">
+              Compare the specifications of standard hookahs against the custom metallurgy and airflow chambers built into Hukka Dubai products below.
+            </p>
+          </motion.div>
+
+          {/* Right Column: Animated Comparison Graphs */}
+          <div className="space-y-8 bg-zinc-900/20 border border-zinc-900 p-6 md:p-8 rounded-sm relative">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Metric 1: Heat Stability & Session Life */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-end text-[11px] uppercase tracking-widest font-semibold">
+                <span className="text-zinc-300">Session Flavor Life (Minutes)</span>
+                <span className="text-gold-400">95 Mins</span>
+              </div>
+              <div className="space-y-2">
+                {/* Traditional Foil Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-zinc-500 mb-0.5">
+                    <span>Traditional Foil Setup</span>
+                    <span>25m</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "25%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="h-full bg-zinc-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Hukka Dubai Onyx HMD Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-gold-300 mb-0.5">
+                    <span>Hukka Imperial Onyx HMD v2</span>
+                    <span>95m</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "95%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
+                      className="h-full bg-gradient-to-r from-gold-600 to-gold-400 shadow-[0_0_8px_rgba(197,168,109,0.3)]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Metric 2: Material Purity & Toxicity Safety */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-end text-[11px] uppercase tracking-widest font-semibold">
+                <span className="text-zinc-300">Material Purity & Safety Index</span>
+                <span className="text-gold-400">99.8%</span>
+              </div>
+              <div className="space-y-2">
+                {/* Standard Alloys Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-zinc-500 mb-0.5">
+                    <span>Generic Zinc/Alloy Stems (Corrosive)</span>
+                    <span>15%</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "15%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="h-full bg-zinc-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Hukka Titanium Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-gold-300 mb-0.5">
+                    <span>Hukka Surgical Titanium & Gold Plating</span>
+                    <span>99.8%</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "99.8%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                      className="h-full bg-gradient-to-r from-gold-600 to-gold-400 shadow-[0_0_8px_rgba(197,168,109,0.3)]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Metric 3: Draw Resistance / Airflow Ease */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-end text-[11px] uppercase tracking-widest font-semibold">
+                <span className="text-zinc-300">Airflow Resistance (Lower is Better)</span>
+                <span className="text-gold-400">10 Pa</span>
+              </div>
+              <div className="space-y-2">
+                {/* Traditional Draw Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-zinc-500 mb-0.5">
+                    <span>Generic Restricted Stem</span>
+                    <span>85 Pa</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "85%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="h-full bg-zinc-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Hukka Burj Diffuser Bar */}
+                <div className="relative">
+                  <div className="flex justify-between text-[9px] text-gold-300 mb-0.5">
+                    <span>Hukka Burj Double-Chamber Diffuser</span>
+                    <span>10 Pa</span>
+                  </div>
+                  <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "10%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                      className="h-full bg-gradient-to-r from-gold-600 to-gold-400 shadow-[0_0_8px_rgba(197,168,109,0.3)]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -42,15 +42,16 @@ export default function Header() {
             <Link href="/shop" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
               Shop Collection
             </Link>
-            <a href="/#bestsellers" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
+            <Link href="/bestsellers" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
               Best Sellers
-            </a>
-            <a href="/#why-us" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
+            </Link>
+            <Link href="/why-us" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
               Why Us
-            </a>
-            <a href="/#story" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
+            </Link>
+            <Link href="/our-story" className="text-zinc-300 hover:text-gold-400 transition-colors duration-200">
               Our Story
-            </a>
+            </Link>
+
             {user?.role === 'admin' && (
               <Link href="/admin" className="text-gold-400 hover:text-gold-200 transition-colors duration-200 flex items-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5" /> Admin
@@ -146,27 +147,28 @@ export default function Header() {
                 >
                   Shop Collection
                 </Link>
-                <a
-                  href="/#bestsellers"
+                <Link
+                  href="/bestsellers"
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-zinc-300 hover:text-gold-400 py-2 border-b border-zinc-900 transition-colors"
                 >
                   Best Sellers
-                </a>
-                <a
-                  href="/#why-us"
+                </Link>
+                <Link
+                  href="/why-us"
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-zinc-300 hover:text-gold-400 py-2 border-b border-zinc-900 transition-colors"
                 >
                   Why Us
-                </a>
-                <a
-                  href="/#story"
+                </Link>
+                <Link
+                  href="/our-story"
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-zinc-300 hover:text-gold-400 py-2 border-b border-zinc-900 transition-colors"
                 >
                   Our Story
-                </a>
+                </Link>
+
                 {user?.role === 'admin' && (
                   <Link
                     href="/admin"

@@ -3,7 +3,15 @@ import { notFound } from 'next/navigation';
 import { dbQuery } from '@/lib/db';
 import ProductDetailsClient from './ProductDetailsClient';
 
-export const revalidate = 0; // Dynamic data loading
+export const dynamic = 'force-static';
+
+export async function generateStaticParams() {
+  const products = dbQuery.getProducts();
+  return products.map((p: any) => ({
+    slug: p.slug
+  }));
+}
+
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
