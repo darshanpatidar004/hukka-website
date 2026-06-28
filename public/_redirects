@@ -1,0 +1,3 @@
+# Netlify rewrite rule for Next.js Single Page App routing
+# Redirects clean URLs and page reloads to the root router, resolving 404 errors
+/*    /index.html    200
