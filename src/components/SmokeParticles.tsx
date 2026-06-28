@@ -43,8 +43,8 @@ export default function SmokeParticles() {
     const createParticle = (x: number, y: number, type: ParticleType, isBurst = false): Particle => {
       const angle = Math.random() * Math.PI * 2;
       const speed = type === 'ember' 
-        ? (isBurst ? Math.random() * 2.5 + 0.8 : Math.random() * 0.8 + 0.2) 
-        : (isBurst ? Math.random() * 1.5 + 0.4 : Math.random() * 0.3 + 0.1);
+        ? (isBurst ? Math.random() * 3.5 + 1.2 : Math.random() * 0.8 + 0.2) 
+        : (isBurst ? Math.random() * 2.2 + 0.6 : Math.random() * 0.3 + 0.1);
 
       let radius = 0;
       let maxRadius = 0;
@@ -53,24 +53,25 @@ export default function SmokeParticles() {
       let color = '';
 
       if (type === 'smoke') {
-        radius = isBurst ? Math.random() * 8 + 4 : Math.random() * 20 + 10;
-        growth = Math.random() * 0.35 + 0.1;
-        decay = Math.random() * 0.0015 + 0.0008;
+        // Significantly larger smoke size for visual satisfaction on click
+        radius = isBurst ? Math.random() * 24 + 14 : Math.random() * 20 + 10;
+        growth = isBurst ? Math.random() * 0.5 + 0.25 : Math.random() * 0.35 + 0.1;
+        decay = isBurst ? Math.random() * 0.009 + 0.006 : Math.random() * 0.0015 + 0.0008;
         color = 'rgba(235, 218, 175, ';
       } else if (type === 'ember') {
-        radius = Math.random() * 1.8 + 0.8;
+        radius = isBurst ? Math.random() * 2.5 + 1.2 : Math.random() * 1.8 + 0.8;
         growth = -0.005;
-        decay = Math.random() * 0.006 + 0.002;
+        decay = isBurst ? Math.random() * 0.015 + 0.008 : Math.random() * 0.006 + 0.002;
         color = Math.random() > 0.5 ? 'rgba(235, 130, 45, ' : 'rgba(218, 180, 50, ';
       } else if (type === 'ring') {
-        radius = isBurst ? Math.random() * 6 + 3 : Math.random() * 12 + 8;
-        growth = Math.random() * 0.6 + 0.35;
-        decay = Math.random() * 0.003 + 0.0018;
+        radius = isBurst ? Math.random() * 16 + 10 : Math.random() * 12 + 8;
+        growth = isBurst ? Math.random() * 0.9 + 0.55 : Math.random() * 0.6 + 0.35;
+        decay = isBurst ? Math.random() * 0.012 + 0.008 : Math.random() * 0.003 + 0.0018;
         color = 'rgba(242, 238, 225, ';
       } else if (type === 'cloud') {
-        radius = Math.random() * 100 + 150; // huge slow clouds
+        radius = Math.random() * 100 + 150; 
         growth = Math.random() * 0.05 + 0.02;
-        decay = Math.random() * 0.0002 + 0.0001; // fades very slowly
+        decay = Math.random() * 0.0002 + 0.0001; 
         color = 'rgba(210, 205, 190, ';
       }
 
@@ -79,13 +80,15 @@ export default function SmokeParticles() {
         x,
         y,
         vx: Math.cos(angle) * speed,
-        vy: type === 'ember' ? -speed - 0.4 : -speed * 0.4 - 0.15,
+        vy: type === 'ember' 
+          ? (isBurst ? Math.sin(angle) * speed - 0.4 : -speed - 0.4) 
+          : (isBurst ? Math.sin(angle) * speed - 0.2 : -speed * 0.4 - 0.15),
         radius,
         maxRadius: radius * 6,
         alpha: isBurst 
-          ? Math.random() * 0.3 + 0.2 
+          ? Math.random() * 0.4 + 0.3 
           : type === 'cloud' 
-            ? Math.random() * 0.04 + 0.02 // very faint background clouds
+            ? Math.random() * 0.04 + 0.02 
             : Math.random() * 0.12 + 0.04,
         growth,
         decay,
@@ -107,8 +110,7 @@ export default function SmokeParticles() {
       const dy = mouse.y - mouse.lastY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist > 15 && particlesRef.current.length < 150) {
-        // Spawn 1-2 glowing sparks at the mouse location
+      if (dist > 15 && particlesRef.current.length < 180) {
         particlesRef.current.push(createParticle(mouse.x, mouse.y, 'ember', false));
         if (Math.random() > 0.6) {
           particlesRef.current.push(createParticle(mouse.x - dx * 0.5, mouse.y - dy * 0.5, 'smoke', false));
@@ -140,7 +142,7 @@ export default function SmokeParticles() {
     // Auto-generate background particles over time
     const interval = setInterval(() => {
       const particles = particlesRef.current;
-      if (particles.length < 100) {
+      if (particles.length < 110) {
         const x = Math.random() * canvas.width;
         const y = canvas.height + 60;
 
@@ -156,24 +158,26 @@ export default function SmokeParticles() {
 
         particles.push(createParticle(x, y, type));
       }
-    }, 220);
+    }, 240);
 
-    // Click Burst Animation
+    // Click Burst Animation - captures in the capture phase to bypass stopPropagation()
     const handleClick = (e: MouseEvent) => {
-      // 18 smoke puffs
-      for (let i = 0; i < 18; i++) {
+      // 14 large smoke puffs
+      for (let i = 0; i < 14; i++) {
         particlesRef.current.push(createParticle(e.clientX, e.clientY, 'smoke', true));
       }
-      // 15 coal sparks
-      for (let i = 0; i < 15; i++) {
+      // 12 coal sparks
+      for (let i = 0; i < 12; i++) {
         particlesRef.current.push(createParticle(e.clientX, e.clientY, 'ember', true));
       }
-      // 3 smoke rings
-      for (let i = 0; i < 3; i++) {
+      // 2 smoke rings
+      for (let i = 0; i < 2; i++) {
         particlesRef.current.push(createParticle(e.clientX, e.clientY, 'ring', true));
       }
     };
-    window.addEventListener('click', handleClick);
+    
+    // Setting capture to true guarantees it triggers everywhere, on buttons, headers, or cards.
+    window.addEventListener('click', handleClick, { capture: true });
 
     // Animation Loop
     let animationFrameId: number;
@@ -186,7 +190,7 @@ export default function SmokeParticles() {
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
 
-        // 1. Mouse Force Interaction
+        // Mouse Force Interaction
         if (mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
@@ -195,7 +199,7 @@ export default function SmokeParticles() {
           if (dist < 200) {
             const force = (200 - dist) / 200;
             const angle = Math.atan2(dy, dx);
-            const pushFactor = p.type === 'cloud' ? 0.05 : 1.2; // clouds move less
+            const pushFactor = p.type === 'cloud' ? 0.05 : 1.2; 
             
             p.vx += Math.cos(angle) * force * pushFactor * 0.6;
             p.vy += Math.sin(angle) * force * pushFactor * 0.6;
@@ -264,7 +268,6 @@ export default function SmokeParticles() {
           ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
           ctx.stroke();
         } else if (p.type === 'cloud') {
-          // Large faint ambient background fog cloud
           const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.radius);
           grad.addColorStop(0, `${p.color}${p.alpha})`);
           grad.addColorStop(0.5, `${p.color}${p.alpha * 0.4})`);
@@ -288,7 +291,7 @@ export default function SmokeParticles() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('click', handleClick);
+      window.removeEventListener('click', handleClick, { capture: true });
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
