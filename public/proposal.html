@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hukka Dubai - Luxury E-Commerce Proposal & Flagship Strategy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c5a86d;
+      --gold-dark: #8e723b;
+      --bg: #09090b;
+      --card-bg: #121214;
+      --border: #222225;
+      --text: #e4e4e7;
+      --text-muted: #88888e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.5;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Print slide layouts */
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4.5rem;
+      background-color: var(--bg);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media print {
+      .slide {
+        width: 297mm; /* Landscape A4 */
+        height: 210mm;
+        page-break-after: always;
+        border-bottom: none;
+        padding: 2.5rem 3.5rem;
+      }
+    }
+
+    /* Decorative luxury borders */
+    .border-frame {
+      position: absolute;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      border: 1px solid rgba(197, 168, 109, 0.15);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .corner-accent {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--gold);
+      z-index: 11;
+    }
+    .corner-tl { top: 1.4rem; left: 1.4rem; border-right: none; border-bottom: none; }
+    .corner-tr { top: 1.4rem; right: 1.4rem; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 1.4rem; left: 1.4rem; border-right: none; border-top: none; }
+    .corner-br { bottom: 1.4rem; right: 1.4rem; border-left: none; border-top: none; }
+
+    /* Typography */
+    h1, h2, h3, .serif-font {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .gold-accent {
+      color: var(--gold);
+    }
+
+    .subtitle {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .slide-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .slide-title {
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    /* Grids & Cards */
+    .content-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      flex-grow: 1;
+      align-items: center;
+    }
+
+    .text-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .feature-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--gold-dark);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-item:hover::before {
+      opacity: 1;
+    }
+
+    .feature-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Mockups */
+    .mockup-container {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mockup-img {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      position: absolute;
+      transition: transform 0.5s;
+    }
+
+    .mockup-main {
+      width: 75%;
+      z-index: 5;
+      transform: translate(-10%, -5%) scale(1);
+    }
+
+    .mockup-sub {
+      width: 55%;
+      z-index: 4;
+      transform: translate(35%, 15%) scale(0.9);
+      opacity: 0.85;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .showcase-frame {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    .showcase-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Roadmap grid */
+    .roadmap-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      flex-grow: 1;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .roadmap-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .roadmap-number {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    /* Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      border-top: 1px solid rgba(197, 168, 109, 0.1);
+      padding-top: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    /* Sign-off */
+    .closing-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 4rem;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .signature-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .sign-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .sign-box {
+      width: 50%;
+      border-top: 1px solid var(--gold-dark);
+      padding-top: 0.8rem;
+    }
+
+    .sign-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 1: COVER SLIDE -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div></div>
+    
+    <div class="cover-content" style="margin: auto; text-align: center; max-width: 850px;">
+      <span class="subtitle">Digital Flagship Boutique Proposal</span>
+      <h1 class="cover-title" style="font-size: 3.2rem; margin-bottom: 0.5rem;">HUKKA DUBAI</h1>
+      <p style="font-size: 0.95rem; color: var(--gold); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1.5rem;">Elite Lifestyle Accessories</p>
+      <div class="cover-divider"></div>
+      <p class="cover-tagline" style="font-size: 0.8rem;">Exclusive Digital Launch & Global Brand Positioning Strategy</p>
+    </div>
+
+    <div class="slide-footer">
+      <span>Dubai HQ - India Launch</span>
+      <span>Strictly Confidential</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 2: GLOBAL IMAGE & BRAND POSITIONING -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Brand Strategy</span>
+      <h2 class="slide-title">Global Positioning & Prestige</h2>
+    </div>
+
+    <div class="content-grid-2">
+      <div class="text-column">
+        <div class="feature-item">
+          <h3 class="feature-title">Aligning with Haute Couture</h3>
+          <p class="feature-desc">Rejects the standard "smoking pipe store" clutter. The design uses typography, layout spacing, and luxury palettes modeled after Rolex, Cartier, and high-fashion fragrance boutique houses.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">Establishing Global Exclusivity</h3>
+          <p class="feature-desc">Positioning Hukka Dubai in India as a design house rather than a product vendor. Visualizes the aerospace metals and Bohemian crystal bases as high-art furniture sculptures.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">High-Worth Individual (HNWI) Trust</h3>
+          <p class="feature-desc">Fosters instant trust among premium buyers in Mumbai, Delhi, and Bangalore by using pristine, editorial layouts and dedicated VIP advisory pathways.</p>
+        </div>
+      </div>
+
+      <div class="text-column" style="background: rgba(197, 168, 109, 0.02); border: 1px dashed rgba(197, 168, 109, 0.15); padding: 2rem;">
+        <h3 class="serif-font" style="color: var(--gold); font-size: 0.95rem; margin-bottom: 0.8rem;">How it affects your image:</h3>
+        <ul style="font-size: 0.78rem; color: var(--text-muted); list-style-type: none; display: flex; flex-direction: column; gap: 0.8rem;">
+          <li>✨ <strong style="color: var(--text);">Elevates Market Value:</strong> Positions the brand above competitors, justifying premium ₹65k to ₹1.25L luxury pricing.</li>
+          <li>🌍 <strong style="color: var(--text);">Global Appeal:</strong> Standardizes branding assets so the boutique is ready for immediate GCC and European audiences.</li>
+          <li>🎭 <strong style="color: var(--text);">Sensory Digital Craft:</strong> Replaces static cataloging with interactive web-art animations, mimicking the actual physical allure of Dubai lounge cultures.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Brand Prestige</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 3: WEBPAGE CORE FEATURES (WHAT WE BUILT) -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Platform Architecture</span>
+      <h2 class="slide-title">Core Features & Compliance</h2>
+    </div>
+
+    <div class="roadmap-list" style="grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem;">
+      <div class="roadmap-card">
+        <h3 class="feature-title">Interactive Age-Gate</h3>
+        <p class="feature-desc">An elegant full-screen lock validating that visitors are of legal age before exposing luxury smoking product catalogs, ensuring absolute compliance.</p>
+      </div>
+      <div class="roadmap-card">
+        <h3 class="feature-title">JWT Secure Portals</h3>
+        <p class="feature-desc">Encrypted authentication layers protecting customer profiles, rewards points, shipping history, and personal concierge communications.</p>
+      </div>
+      <div class="roadmap-card">
+        <h3 class="feature-title">COTPA Compliance</h3>
+        <p class="feature-desc">Carefully placed legal warnings and compliance footers structured to meet all COTPA regulations in the Indian marketplace.</p>
+      </div>
+      <div class="roadmap-card">
+        <h3 class="feature-title">Live Stock Alerts</h3>
+        <p class="feature-desc">Real-time inventory checks displaying exact items remaining for limited editions (e.g. Burj Elite) to drive scarcity and action.</p>
+      </div>
+      <div class="roadmap-card">
+        <h3 class="feature-title">Admin Dashboard</h3>
+        <p class="feature-desc">Private analytics panel calculating gross revenue, total order quantities, customer signup metrics, and popular categories in real-time.</p>
+      </div>
+      <div class="roadmap-card">
+        <h3 class="feature-title">SEO Schema Markup</h3>
+        <p class="feature-desc">Deep search engine structures ensuring Hukka Dubai ranks first on Google for terms like "luxury hookah" and "imported designer hookah".</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Feature List</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 4: VISUAL EXPERIENCE & USER ACTION -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Bespoke Experience</span>
+      <h2 class="slide-title">Sensory Digital Animations</h2>
+    </div>
+
+    <div class="content-grid-2">
+      <div class="text-column">
+        <div class="feature-item">
+          <h3 class="feature-title">Reactive Evolving Smoke</h3>
+          <p class="feature-desc">The background canvas simulates three types of drifting elements: large smoke clouds, toroidal smoke rings, and bright coal embers that flutter upward.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">Spring-loaded Cursor Dynamics</h3>
+          <p class="feature-desc">Mouse movements spawn a gentle trail of burning embers and draft smoke. Pushes particles aside with natural fluid wind drag, captivating client focus.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">3D Component Rotation</h3>
+          <p class="feature-desc">Moving the mouse on hero cards tilts them along the X and Y axes, changing the metallic gold light reflection dynamically.</p>
+        </div>
+      </div>
+
+      <div class="mockup-container">
+        <img class="mockup-img mockup-sub" src="./screenshot_product.png" alt="Product Screen">
+        <img class="mockup-img mockup-main" src="./screenshot_hero.png" alt="Hero Screen">
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Sensory UX</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 5: FRICTIONLESS SHOPPING & INDIAN LOGISTICS -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Transaction Design</span>
+      <h2 class="slide-title">Bespoke Catalog & Local Adaptations</h2>
+    </div>
+
+    <div class="showcase-grid">
+      <div class="showcase-frame">
+        <img src="./screenshot_shop.png" alt="Catalog Grid Screen">
+      </div>
+
+      <div class="text-column">
+        <div class="feature-item">
+          <h3 class="feature-title">Luxury Product Cards</h3>
+          <p class="feature-desc">Replaced abstract boxes with real, uploaded photos of high-end hookahs. Every card features a shine animation on hover, mimicking the reflection of polished gold and chrome.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">Indian Payment & Invoicing</h3>
+          <p class="feature-desc">Integrated structures for credit card, UPI, and bank transfers, with automatic GST invoicing calculations for corporate and lounge accounts.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">White-Glove Express Cargo</h3>
+          <p class="feature-desc">Supports heavy-duty flight case delivery structures, providing tracking portals for insured air-freight transport across India.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Bespoke Storefront</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 6: BUSINESS IMPACT & ROI METRICS -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Business Value</span>
+      <h2 class="slide-title">How It Improves Your Bottom Line</h2>
+    </div>
+
+    <div class="content-grid-2">
+      <div class="text-column">
+        <div class="feature-item">
+          <h3 class="feature-title">Lower Shopping Cart Abandonment</h3>
+          <p class="feature-desc">Bespoke mini-carts (slide-out drawers) allow users to modify, check out, and purchase without redirecting to slow external cart pages, maximizing sales conversions.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">Increased Average Order Value (AOV)</h3>
+          <p class="feature-desc">Configured recommendations to display matching high-margin accessories (like the Royal Onyx HMD or Imperial Crystal Bases) directly inside product checkouts.</p>
+        </div>
+        <div class="feature-item">
+          <h3 class="feature-title">Customer Lifetime Value (LTV)</h3>
+          <p class="feature-desc">User accounts track rewards points automatically. Loyal customers accumulate "Emirati Coins" per order, driving repeat purchases and flavor consumable restocks.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">+38%</div>
+          <div class="stat-label">Projected AOV Increase</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">-25%</div>
+          <div class="stat-label">Cart Abandonment Drop</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2.4x</div>
+          <div class="stat-label">User Engagement Duration</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Automated Billing Accuracy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>ROI Metrics</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 7: FUTURE ROBUST ROADMAP (WHAT WE CAN ADD) -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Partnership Roadmap</span>
+      <h2 class="slide-title">Phase 2: Strategic Scalability</h2>
+    </div>
+
+    <div class="roadmap-list">
+      <div class="roadmap-card">
+        <div class="roadmap-number">01</div>
+        <h3 class="feature-title">3D Hookah Stem Configurator</h3>
+        <p class="feature-desc">Let buyers build custom hookahs. Users choose base cuts, metal plating, hose skins, and HMD styles, seeing changes update in real-time in 3D.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-number">02</div>
+        <h3 class="feature-title">Royal Lounge Member Club</h3>
+        <p class="feature-desc">Invite-only rewards system. VIPs redeem points for limited edition flavors, personalized mouthpieces, or book lounges in Dubai and Mumbai.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-number">03</div>
+        <h3 class="feature-title">White-Glove Wedding Gifting</h3>
+        <p class="feature-desc">Capturing high-margin gift registries. Custom laser-engraving on hookah trays and calligraphy notes packed inside luxury wooden trunks.</p>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-number">04</div>
+        <h3 class="feature-title">AR Lounge Space Previewer</h3>
+        <p class="feature-desc">Allows clients to use their mobile cameras to project a virtual Hukka piece inside their penthouse or hotel lounge before purchasing.</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Modular Growth</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE 8: AUTHORIZATION & PARTNERSHIP AGREEMENT -->
+  <!-- ========================================================================= -->
+  <div class="slide">
+    <div class="border-frame"></div>
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <div class="slide-header">
+      <span class="subtitle">Authorization</span>
+      <h2 class="slide-title">Launch the Digital Flagship</h2>
+    </div>
+
+    <div class="closing-grid">
+      <div class="text-column">
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.8;">
+          This platform represents the standard of premium digital experiences. By launching, Hukka Dubai positions itself as the uncontested luxury leader for elite lifestyle centerpieces in the Indian sub-continent.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.8;">
+          Upon authorization, we will map target domains, activate the merchant gateway structures, and open the boutique doors to the public within 7 business days.
+        </p>
+      </div>
+
+      <div class="signature-area">
+        <h3 class="serif-font" style="font-size: 0.85rem; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem;">Sign-Off</h3>
+        <div class="sign-row">
+          <div class="sign-box">
+            <span class="sign-label">For Hukka Dubai</span>
+          </div>
+          <div class="sign-box">
+            <span class="sign-label">Lead Developer Partner</span>
+          </div>
+        </div>
+        <div class="sign-row" style="margin-top: 0.6rem;">
+          <div class="sign-box">
+            <span class="sign-label">Date</span>
+          </div>
+          <div class="sign-box">
+            <span class="sign-label">Witness Signature</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Hukka Dubai</span>
+      <span>Agreement & Launch</span>
+    </div>
+  </div>
+
+</body>
+</html>
